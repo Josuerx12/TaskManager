@@ -1,12 +1,12 @@
-import { localUser } from "../../interfaces/User";
 import Button from "react-bootstrap/Button";
 import { BsPlusLg } from "react-icons/bs";
+import { user } from "../../interfaces/User";
 
 const index = ({
   user,
   openModal,
 }: {
-  user: localUser;
+  user: user | undefined;
   openModal: () => void;
 }) => {
   return (
@@ -32,7 +32,7 @@ const index = ({
             borderRadius: ".3rem",
           }}
         >
-          <b>Usuário:</b> {user.user} | <b>E-mail:</b> {user.email}
+          <b>Usuário:</b> {user?.name} | <b>E-mail:</b> {user?.email}
         </p>
         <Button
           onClick={openModal}

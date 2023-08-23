@@ -37,7 +37,7 @@ export const useAuth = () => {
 
       alert(usuario.msg);
     } catch (err) {
-      alert(err.response.data.map((erros) => erros));
+      console.log(err);
     }
   };
 
@@ -62,7 +62,6 @@ export const useAuth = () => {
       alert(user.data.msg);
     } catch (err) {
       console.log(err);
-      alert(err.response.data.map((erros) => erros));
     }
   };
   const logout = () => {

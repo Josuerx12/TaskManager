@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { login, register, user } from "../interfaces/User";
 
-const AuthContext = createContext<context | null>(null);
+const AuthContext = createContext<context | undefined>(undefined);
 
 interface context {
   user?: user;
@@ -21,5 +21,9 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
 };
 
 export const Auth = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuthContext must be used within an AuthProvider");
+  }
+  return context;
 };

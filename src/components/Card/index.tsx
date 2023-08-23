@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { task } from "../../interfaces/Data";
-import React, { useState } from "react";
+import { useState } from "react";
 import ModalEditTask from "../ModalEditTask";
 import { Data } from "../../context/DataContext";
 

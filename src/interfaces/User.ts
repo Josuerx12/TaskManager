@@ -15,8 +15,3 @@ export interface user {
   email: string;
   token: string;
 }
-
-export interface localUser {
-  email: string;
-  user: string;
-}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../utils/apiConnect";
 
-import { task } from "../interfaces/Data";
+import { editTask, task } from "../interfaces/Data";
 import { Auth } from "../context/AuthContext";
 
 export const useData = () => {
@@ -17,7 +17,7 @@ export const useData = () => {
   const getTasks = async () => {
     try {
       const res = await api.get("/tasks", {
-        headers: { Authorization: `Bearer ${user.token}` },
+        headers: { Authorization: `Bearer ${user?.token}` },
       });
       setTasks(res.data);
     } catch (error) {
@@ -31,7 +31,7 @@ export const useData = () => {
         "/createTask",
         { task: task },
         {
-          headers: { Authorization: `Bearer ${user.token}` },
+          headers: { Authorization: `Bearer ${user?.token}` },
         }
       );
       getTasks();
@@ -43,7 +43,7 @@ export const useData = () => {
   const deleteTask = async (id: string) => {
     try {
       await api.delete(`/task/${id}`, {
-        headers: { Authorization: `Bearer ${user.token}` },
+        headers: { Authorization: `Bearer ${user?.token}` },
       });
       getTasks();
     } catch (error) {
@@ -51,11 +51,11 @@ export const useData = () => {
     }
   };
 
-  const editTask = async (id: string, taskChanges: string | task) => {
+  const editTask = async (id: string, taskChanges: string | editTask) => {
     console.log(taskChanges);
     try {
       await api.put(`/task/${id}`, taskChanges, {
-        headers: { Authorization: `Bearer ${user.token}` },
+        headers: { Authorization: `Bearer ${user?.token}` },
       });
       getTasks();
     } catch (error) {

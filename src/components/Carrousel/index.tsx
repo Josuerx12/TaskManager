@@ -1,12 +1,11 @@
 import Carousel from "react-bootstrap/Carousel";
 import { slide } from "../../interfaces/Components";
 
-const CarouselPhoto = (images: Array<slide>) => {
-  const data = images.images;
+const CarouselPhoto = ({ images }: { images: Array<slide> }) => {
   return (
     <Carousel style={{ background: "rgba(0,0,0,0.6)" }}>
       {images &&
-        data.map((item, i) => (
+        images.map((item, i) => (
           <Carousel.Item key={i}>
             <img
               style={{ width: "100%", height: "500px", opacity: ".7" }}
