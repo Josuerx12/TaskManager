@@ -6,15 +6,19 @@ const AuthContext = createContext<context | undefined>(undefined);
 
 interface context {
   user?: user;
+  loading: boolean;
+  erro: string;
   login: (data: login) => Promise<void>;
   register: (data: register) => Promise<void>;
   logout: () => void;
 }
 
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
-  const { user, login, register, logout } = useAuth();
+  const { user, login, register, logout, loading, erro } = useAuth();
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider
+      value={{ user, login, register, logout, loading, erro }}
+    >
       {children}
     </AuthContext.Provider>
   );

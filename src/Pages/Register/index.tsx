@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
+import ErroMessage from "../../components/ErroMessage";
+
 import { Auth } from "../../context/AuthContext";
 
 const Register = () => {
@@ -10,22 +11,15 @@ const Register = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
-  const { register } = Auth();
+
+  const { register, loading, erro } = Auth();
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
-    if (password.length < 8) {
-      return alert(
-        "A senha precisa conter 8 ou mais caracteres 1 caractere especial e 1 letra maiúscula."
-      );
-    }
     const data = { name, email, password, confirmPassword };
     await register(data);
-    navigate("/entrar");
   }
-  function handleLink(e: React.FormEvent, path: string) {
+  function handleLink(e: React.FormEvent) {
     e.preventDefault();
-    navigate(path);
   }
   return (
     <Container style={{ maxWidth: "700px", paddingTop: "2rem" }}>
@@ -94,7 +88,7 @@ const Register = () => {
         <p>Já possui uma conta?</p>
         <p>
           <Button
-            onClick={(e) => handleLink(e, "/entrar")}
+            onClick={(e) => handleLink(e)}
             style={{ padding: "0" }}
             variant="link"
           >
@@ -102,14 +96,28 @@ const Register = () => {
           </Button>
           para entrar na sua conta.
         </p>
-        <Button
-          variant="primary"
-          type="submit"
-          size={"lg"}
-          style={{ width: "100%" }}
-        >
-          Cadastrar
-        </Button>
+        {erro?.length > 0 && <ErroMessage message={erro} />}
+        {loading && (
+          <Button
+            variant="primary"
+            type="submit"
+            size={"lg"}
+            style={{ width: "100%" }}
+            disabled
+          >
+            Cadastrar
+          </Button>
+        )}
+        {!loading && (
+          <Button
+            variant="primary"
+            type="submit"
+            size={"lg"}
+            style={{ width: "100%" }}
+          >
+            Cadastrar
+          </Button>
+        )}
       </Form>
     </Container>
   );

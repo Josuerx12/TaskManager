@@ -1,6 +1,6 @@
 import { task } from "../../interfaces/Data";
 import Card from "../../components/Card";
-const DoneTasks = ({ doneTasks }: { doneTasks: Array<task> | null }) => {
+const DoneTasks = ({ doneTasks }: { doneTasks: Array<task> | undefined }) => {
   return (
     <div
       style={{
@@ -24,7 +24,7 @@ const DoneTasks = ({ doneTasks }: { doneTasks: Array<task> | null }) => {
       >
         {doneTasks &&
           doneTasks.map((task) => <Card key={task._id} data={task} />)}
-        {(doneTasks === null || !doneTasks) && (
+        {(doneTasks === null || !doneTasks || doneTasks.length <= 0) && (
           <p style={{ color: "#fff" }}>
             Todas as tarefas já foram concluidas, ou nenhuma tarefa foi
             iniciada.

@@ -1,7 +1,7 @@
 import { task } from "../../interfaces/Data";
 import Card from "../../components/Card";
 
-const index = ({ allTasks }: { allTasks: Array<task> | null }) => {
+const index = ({ allTasks }: { allTasks: Array<task> | undefined }) => {
   const tasks = allTasks;
   return (
     <div
@@ -25,7 +25,7 @@ const index = ({ allTasks }: { allTasks: Array<task> | null }) => {
         }}
       >
         {tasks && tasks.map((task) => <Card key={task._id} data={task} />)}
-        {(tasks === null || !tasks) && (
+        {(tasks === undefined || !tasks || tasks.length <= 0) && (
           <p style={{ color: "#fff" }}>
             Todas as tarefas já foram iniciadas, ou nenhuma tarefa cadastrada.
           </p>

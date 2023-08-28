@@ -4,20 +4,17 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { Auth } from "../../context/AuthContext";
+import ErroMessage from "../../components/ErroMessage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { login } = Auth();
+  const { login, loading, erro } = Auth();
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    if (password.length < 8) {
-      return alert("A senha precisa conter 8 ou mais caracteres.");
-    }
     const data = { email, password };
     await login(data);
-    navigate("/dashboard");
   }
   function handleLink(e: React.FormEvent, path: string) {
     e.preventDefault();
@@ -69,14 +66,28 @@ const Login = () => {
           </Button>
           para criar uma conta para usar o Task Manager.
         </p>
-        <Button
-          variant="primary"
-          type="submit"
-          size={"lg"}
-          style={{ width: "100%" }}
-        >
-          Entrar
-        </Button>
+        {erro?.length > 0 && <ErroMessage message={erro} />}
+        {loading && (
+          <Button
+            variant="primary"
+            type="submit"
+            size={"lg"}
+            style={{ width: "100%" }}
+            disabled
+          >
+            Entrar
+          </Button>
+        )}
+        {!loading && (
+          <Button
+            variant="primary"
+            type="submit"
+            size={"lg"}
+            style={{ width: "100%" }}
+          >
+            Entrar
+          </Button>
+        )}
       </Form>
     </Container>
   );

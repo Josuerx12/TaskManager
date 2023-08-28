@@ -12,6 +12,7 @@ export interface register {
 
 export interface user {
   name: string;
+  user?: string;
   email: string;
   token: string;
 }

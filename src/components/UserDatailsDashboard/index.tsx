@@ -32,7 +32,7 @@ const index = ({
             borderRadius: ".3rem",
           }}
         >
-          <b>Usuário:</b> {user?.name} | <b>E-mail:</b> {user?.email}
+          <b>Usuário:</b> {user?.user} | <b>E-mail:</b> {user?.email}
         </p>
         <Button
           onClick={openModal}
