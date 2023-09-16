@@ -17,9 +17,6 @@ const Register = () => {
     e.preventDefault();
     const data = { name, email, password, confirmPassword };
     const res = await register(data);
-    if(res.status === 201){
-      alert("Usuário criado com sucesso.")
-    }
   }
   function handleLink(e: React.FormEvent) {
     e.preventDefault();
