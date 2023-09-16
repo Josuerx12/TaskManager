@@ -16,7 +16,10 @@ const Register = () => {
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
     const data = { name, email, password, confirmPassword };
-    await register(data);
+    const res = await register(data);
+    if(res.status === 201){
+      alert("Usuário criado com sucesso.")
+    }
   }
   function handleLink(e: React.FormEvent) {
     e.preventDefault();
