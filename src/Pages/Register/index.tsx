@@ -16,7 +16,7 @@ const Register = () => {
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
     const data = { name, email, password, confirmPassword };
-    const res = await register(data);
+     await register(data);
   }
   function handleLink(e: React.FormEvent) {
     e.preventDefault();
