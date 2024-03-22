@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://apitaskm.josuecarvalho.cloud/",
+  baseURL: "https://backendtaskmanager.vercel.app/",
   headers: { "Content-Type": "application/json" },
 });
